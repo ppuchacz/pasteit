@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    {% if notes %}
+    <table>
+        <tr>
+            <td>id</td>
+            <td>format</td>
+            <td>created_at</td>
+            <td>contents</td>
+        </tr>
+        {% for note in notes %}
+        <tr>
+            <td><a href="{% url 'note' note.pk %}"> {{ note.pk }} </a></td>
+            <td>{{ note.format }}</td>
+            <td>{{ note.created_at }}</td>
+            <td>{{ note.contents }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No items available</p>
+    {% endif %}
+</body>
+</html>
